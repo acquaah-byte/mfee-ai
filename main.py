@@ -15,18 +15,16 @@ HOME = """
         .section {padding:60px 20px; text-align:center; background:#1E293B;}
         .cards {display:flex; justify-content:center; gap:20px; flex-wrap:wrap;}
         .card {background:#334155; padding:30px; border-radius:15px; width:280px;}
-        .orange {color:#FF6B35;}
     </style>
 </head>
 <body>
     <div class="hero">
         <h1>MFEE AI</h1>
         <p style="font-size:20px;">We build AI Assistants that answer customers, book appointments, and grow your business</p>
-        <p class="orange">Made in Ghana 🇬🇭 | Built for Africa</p>
+        <p>🇬🇭 Made in Ghana | Built for Africa</p>
         <a href="/chat" class="btn">Try AI Demo</a>
         <a href="/contact" class="btn">Book a Call</a>
     </div>
-    
     <div class="section">
         <h2>What We Do</h2>
         <div class="cards">
@@ -39,21 +37,73 @@ HOME = """
 </html>
 """
 
+CHAT = """
+<!DOCTYPE html>
+<html>
+<head><title>Chat with MFEE AI</title>
+<style>
+body {font-family:Arial; background:#0F172A; color:white; padding:20px; text-align:center;}
+#chatbox {background:#1E293B; width:90%; max-width:600px; margin:20px auto; padding:20px; border-radius:15px; height:400px; overflow-y:scroll; text-align:left;}
+.msg {margin:10px 0; padding:10px; border-radius:10px;}
+.user {background:#FF6B35; color:white; text-align:right;}
+.bot {background:#334155; color:white;}
+input {width:70%; padding:12px; border-radius:8px; border:none;}
+button {padding:12px 20px; background:#FF6B35; color:white; border:none; border-radius:8px; cursor:pointer;}
+</style>
+</head>
+<body>
+<h1>Talk to MFEE AI Demo</h1>
+<div id="chatbox"><div class="msg bot">Hello! I'm MFEE AI. I can answer questions about AI for your business. What do you need help with?</div></div>
+<input id="userInput" placeholder="Ask me anything...">
+<button onclick="sendMsg()">Send</button>
+
+<script>
+function sendMsg(){
+  let input = document.getElementById('userInput');
+  let msg = input.value;
+  if(msg=='') return;
+  document.getElementById('chatbox').innerHTML += `<div class="msg user">${msg}</div>`;
+  input.value='';
+  
+  fetch('/get_reply', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({message:msg})})
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById('chatbox').innerHTML += `<div class="msg bot">${data.reply}</div>`;
+    document.getElementById('chatbox').scrollTop = document.getElementById('chatbox').scrollHeight;
+  });
+}
+</script>
+</body></html>
+"""
+
 @app.route('/')
 def home():
     return render_template_string(HOME)
 
-@app.route('/services')
-def services():
-    return "<div style='padding:50px; color:white; background:#0F172A;'><h1>Our Services</h1><p>AI Chatbots, WhatsApp Automation, Business Tools</p><a href='/'>Back Home</a></div>"
+@app.route('/chat')
+def chat():
+    return render_template_string(CHAT)
+
+@app.route('/get_reply', methods=['POST'])
+def get_reply():
+    data = request.json
+    user_msg = data['message'].lower()
+    
+    # Smart demo replies
+    if 'price' in user_msg or 'cost' in user_msg:
+        reply = "Our AI Chatbots start from GHS 500/month. They handle customer questions 24/7 and save you 10+ hours. Want me to book you a free demo call?"
+    elif 'whatsapp' in user_msg:
+        reply = "Yes! We build WhatsApp AI assistants that auto-reply customers in English, Twi, and Ga. They work even while you sleep 😊"
+    elif 'hello' in user_msg or 'hi' in user_msg:
+        reply = "Hi there! 👋 I'm MFEE AI. I help Ghanaian businesses automate with AI. What kind of business do you run?"
+    else:
+        reply = "Great question! MFEE AI builds custom AI tools for African businesses. Click 'Book a Call' and let's discuss how AI can help you save time and make more money."
+    
+    return jsonify({'reply': reply})
 
 @app.route('/contact')
 def contact():
-    return "<div style='padding:50px; color:white; background:#0F172A;'><h1>Book a Call</h1><p>Email: hello@mfee.ai<br>WhatsApp: +233 XXX</p><a href='/'>Back Home</a></div>"
-
-@app.route('/chat')
-def chat():
-    return "<div style='padding:50px; color:white; background:#0F172A; text-align:center;'><h1>Talk to MFEE AI Demo</h1><p>Ask me anything about your business!</p><p>[AI Chat coming in Step 2]</p><a href='/'>Back Home</a></div>"
+    return "<div style='padding:50px; color:white; background:#0F172A; text-align:center;'><h1>Book a Call</h1><p>Email: hello@mfee.ai<br>WhatsApp: +233 XXX</p><a href='/' style='color:#FF6B35;'>Back Home</a></div>"
 
 if __name__ == "__main__":
     app.run()
