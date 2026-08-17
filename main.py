@@ -98,7 +98,7 @@ button {padding:15px 30px; background:#FF6B35; color:white; border:none; border-
 <button type="submit">Book My Free Call</button>
 </form>
 <p>Or reach us directly:</p>
-<p>Email: mozvilia2@gmail.com<br>WhatsApp: +233 24 345 4647</p>
+<p>Email: mozvilla2@gmail.com<br>WhatsApp: +233 24 345 4647</p>
 <p id="msg"></p>
 <a href="/" style="color:#FF6B35;">← Back Home</a>
 
