@@ -97,6 +97,8 @@ button {padding:15px 30px; background:#FF6B35; color:white; border:none; border-
 <input type="text" id="whatsapp" placeholder="WhatsApp Number" required><br>
 <button type="submit">Book My Free Call</button>
 </form>
+<p>Or reach us directly:</p>
+<p>Email: mozvilia2@gmail.com<br>WhatsApp: +233 24 345 4647</p>
 <p id="msg"></p>
 <a href="/" style="color:#FF6B35;">← Back Home</a>
 
@@ -106,7 +108,7 @@ document.getElementById('leadForm').onsubmit = function(e){
   let data = {name: name.value, email: email.value, whatsapp: whatsapp.value};
   fetch('/save_lead', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data)})
   .then(res => res.json())
-  .then(d => {document.getElementById('msg').innerHTML = "✅ Thank you! We'll WhatsApp you in 24 hours."});
+  .then(d => {document.getElementById('msg').innerHTML = "✅ Thank you! We'll WhatsApp you in 30 mins."});
 }
 </script>
 </body></html>
