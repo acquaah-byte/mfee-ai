@@ -106,7 +106,7 @@ button {padding:15px 30px; background:#FF6B35; color:white; border:none; border-
 document.getElementById('leadForm').onsubmit = function(e){
   e.preventDefault();
   let data = {name: name.value, email: email.value, whatsapp: whatsapp.value};
-  fetch("https://script.google.com/macros/s/AKfycbxuil3SOhF2Xkw09MV6tABpOPl_xEummm8H2DJOHL50vxFeo_ui8Wgp6iZJdmGSNElX/exec
+  fetch("https://script.google.com/macros/s/AKfycbxuil3SOhF2Xkw09MV6tABpOPl_xEummm8H2DJOHL50vxFeo_ui8Wgp6iZJdmGSNElX/exec"
   .then(res => res.json())
   .then(d => {document.getElementById('msg').innerHTML = "✅ Thank you! We'll WhatsApp you in 30 mins."});
 }
