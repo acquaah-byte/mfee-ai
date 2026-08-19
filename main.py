@@ -91,39 +91,20 @@ button {padding:15px 30px; background:#FF6B35; color:white; border:none; border-
 <body>
 <h1>Book a Free AI Consultation</h1>
 <p>Let us build an AI assistant for your business</p>
-<form id="leadForm">
-<input type="text" id="name" placeholder="Your Name" required><br>
-<input type="email" id="email" placeholder="Your Email" required><br>
-<input type="text" id="whatsapp" placeholder="WhatsApp Number" required><br>
-<button type="submit">Book My Free Call</button>
-</form>
-<p>Or reach us directly:</p>
-<p>Email: mozvilla2@gmail.com<br>WhatsApp: +233 24 345 4647</p>
-<div id="formMessage"></div>
-<a href="/" style="color:#FF6B35;">← Back Home</a>
+ <form action="https://script.google.com/macros/s/AKfycbxuil3SOhF2Xo5P7qR8sT9uV0wX1yZ2aB3cD4eF5gH6iJ7kL8mN9oP0q/exec" method="POST" target="_blank">
+     <input type="text" name="name" placeholder="Your Name" required><br>
+     <input type="email" name="email" placeholder="Your Email" required><br>
+     <input type="tel" name="whatsapp" placeholder="WhatsApp Number" required><br>
+     <button type="submit">Book My Free Call</button>
+ </form>
 
-<script>
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  
-  const formData = new FormData(this);
-  const submitBtn = this.querySelector('button');
-  const messageDiv = document.getElementById('formMessage');
-  
-  submitBtn.disabled = true;
-  submitBtn.textContent = 'Sending...';
-  
-  fetch('https://script.google.com/macros/s/AKfycbxuil3SOhF2Xo5P7qR8sT9uV0wX1yZ2aB3cD4eF5gH6iJ7kL8mN9oP0q/exec', {
-    method: 'POST',
-    body: formData
-  })
-  .then(response => response.json())
-  .then(data => {
-    if(data.result === 'success') {
-      messageDiv.innerHTML = '<div style="color: #4ade80; padding: 10px; background: #14532d; border-radius: 8px; margin-top: 15px;">✅ Thank you! We\'ll WhatsApp you in 24hrs</div>';
-      this.reset();
-    } else {
-      messageDiv.innerHTML = '<div style="color: #f87171; padding: 10px; background: #7f1d1d; border-radius: 8px; margin-top: 15px;">❌ Error. Please try again.</div>';
+ <div style="color: #4ade80; padding: 12px; background: #14532d; border-radius: 8px; margin-top: 15px; text-align: center;">
+ ✅ After clicking, a new tab will open saying "Success". That means we got it!
+ </div>
+
+ <p>Or reach us directly:</p>
+ <p>Email: mozivilla2@gmail.com<br>WhatsApp: +233 24 345 4647</p>
+ <a href="/" style="color:#FF6B35;">⬅ Back Home</a>
     }
     submitBtn.disabled = false;
     submitBtn.textContent = 'Book My Free Call';
