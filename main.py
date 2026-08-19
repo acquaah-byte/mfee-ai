@@ -91,38 +91,31 @@ button {padding:15px 30px; background:#FF6B35; color:white; border:none; border-
 <body>
 <h1>Book a Free AI Consultation</h1>
 <p>Let us build an AI assistant for your business</p>
-<form id="leadForm" action="https://script.google.com/macros/s/AKfycbzzgh9mQA92PezF3Uz9u04mOP8JsARlDqeruXkEU15SHyDoivyyjfWYuWLEyu02Xou0AQ/exec" method="POST">
-    <input type="text" name="name" placeholder="Your Name" required>
-    <input type="email" name="email" placeholder="Email Address" required>
-    <input type="tel" name="whatsapp" placeholder="WhatsApp Number" required>
+
+<form id="leadForm" action="https://script.google.com/macros/s/AKfycbzzgh9mQA92PezF3Uz9u04mOP8JsARlDqeruXkEU15SHyDoivyyjfWYuLEyu02Xou0AQ/exec" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
+    <input type="text" name="name" placeholder="Your Name" required><br>
+    <input type="email" name="email" placeholder="Email Address" required><br>
+    <input type="tel" name="whatsapp" placeholder="WhatsApp Number" required><br>
     <button type="submit">Book My Free Call</button>
 </form>
+
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
 
 <div id="thankYou" style="display:none; color:#22c55e; text-align:center; margin-top:20px; font-weight:bold;">
     ✅ Thank you! We got your request. We'll WhatsApp you within 5 minutes.
 </div>
 
 <script>
-document.getElementById('leadForm').addEventListener('submit', function(e) {
-    e.preventDefault(); // <-- THIS STOPS THE PAGE JUMP
-    
-    var form = e.target;
-    var data = new FormData(form);
-    
-    fetch(form.action, {
-        method: 'POST',
-        body: data,
-        mode: 'no-cors' // needed for Apps Script
-    }).then(function() {
-        form.reset(); // clears the fields
-        document.getElementById('thankYou').style.display = 'block'; // shows thank you
-    }).catch(function(error) {
-        alert('Something went wrong. Try again.');
-    });
-});
+var submitted=false;
+document.getElementById('hidden_iframe').onload = function() {
+    if(submitted) {
+        document.getElementById('leadForm').reset();
+        document.getElementById('thankYou').style.display = 'block';
+        submitted = false;
+    }
+};
 </script>
 
- </div>
 
  <p>Or reach us directly:</p>
  <p>Email: mozivilla2@gmail.com<br>WhatsApp: +233 24 345 4647</p>
