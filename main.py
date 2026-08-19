@@ -91,15 +91,25 @@ button {padding:15px 30px; background:#FF6B35; color:white; border:none; border-
 <body>
 <h1>Book a Free AI Consultation</h1>
 <p>Let us build an AI assistant for your business</p>
-<form action="https://script.google.com/macros/s/AKfycbzzgh9mQA92PezF3Uz9u04mOP8JsARlDqeruXkEU15SHyDoivyyjfWYuWLEyu02Xou0AQ/exec" method="POST" target="_blank">
-     <input type="text" name="name" placeholder="Your Name" required><br>
-     <input type="email" name="email" placeholder="Your Email" required><br>
-     <input type="tel" name="whatsapp" placeholder="WhatsApp Number" required><br>
-     <button type="submit">Book My Free Call</button>
- </form>
+<form id="leadForm" action="https://script.google.com/macros/s/AKfycbzzgh9mQA92PezF3Uz9u04mOP8JsARlDqeruXkEU15SHyDoivyyjfWYuWLEyu02Xou0AQ/exec" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Email Address" required>
+    <input type="tel" name="whatsapp" placeholder="WhatsApp Number" required>
+    <button type="submit">Book My Free Call</button>
+</form>
 
- <div style="color: #4ade80; padding: 12px; background: #14532d; border-radius: 8px; margin-top: 15px; text-align: center;">
- ✅ After clicking, a new tab will open saying "Success". That means we got it!
+<div id="thankYou" style="display:none; color:#22c55e; text-align:center; margin-top:20px; font-weight:bold;">
+    ✅ Thank you! We got your request. We'll WhatsApp you within 5 minutes.
+</div>
+
+<script>
+document.getElementById('leadForm').addEventListener('submit', function(e) {
+    setTimeout(function() {
+        document.getElementById('leadForm').reset(); // clears the fields
+        document.getElementById('thankYou').style.display = 'block'; // shows thank you
+    }, 1000);
+});
+
  </div>
 
  <p>Or reach us directly:</p>
