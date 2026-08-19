@@ -104,11 +104,23 @@ button {padding:15px 30px; background:#FF6B35; color:white; border:none; border-
 
 <script>
 document.getElementById('leadForm').addEventListener('submit', function(e) {
-    setTimeout(function() {
-        document.getElementById('leadForm').reset(); // clears the fields
+    e.preventDefault(); // <-- THIS STOPS THE PAGE JUMP
+    
+    var form = e.target;
+    var data = new FormData(form);
+    
+    fetch(form.action, {
+        method: 'POST',
+        body: data,
+        mode: 'no-cors' // needed for Apps Script
+    }).then(function() {
+        form.reset(); // clears the fields
         document.getElementById('thankYou').style.display = 'block'; // shows thank you
-    }, 1000);
+    }).catch(function(error) {
+        alert('Something went wrong. Try again.');
+    });
 });
+</script>
 
  </div>
 
