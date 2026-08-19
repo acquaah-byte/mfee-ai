@@ -105,17 +105,7 @@ button {padding:15px 30px; background:#FF6B35; color:white; border:none; border-
  <p>Or reach us directly:</p>
  <p>Email: mozivilla2@gmail.com<br>WhatsApp: +233 24 345 4647</p>
  <a href="/" style="color:#FF6B35;">⬅ Back Home</a>
-    }
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Book My Free Call';
-  })
-  .catch(error => {
-    messageDiv.innerHTML = '<div style="color: #f87171; padding: 10px; background: #7f1d1d; border-radius: 8px; margin-top: 15px;">❌ Network error. Please try again.</div>';
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Book My Free Call';
-  });
-});
-</script>
+
 </body></html>
 """
 
