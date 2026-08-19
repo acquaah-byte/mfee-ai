@@ -91,7 +91,7 @@ button {padding:15px 30px; background:#FF6B35; color:white; border:none; border-
 <body>
 <h1>Book a Free AI Consultation</h1>
 <p>Let us build an AI assistant for your business</p>
-
+<form id="leadForm" action="https://script.google.com/macros/s/AKfycbz_FmR7g58bxdKzL6L2f4xQNww19Ol6FkMVeoAWhW2ld2LvYnpW0WJEE3yKUkEwwvZlgw/exec"
 <form id="leadForm" action="https://script.google.com/macros/s/AKfycbzzgh9mQA92PezF3Uz9u04mOP8JsARlDqeruXkEU15SHyDoivyyjfWYuLEyu02Xou0AQ/exec" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
     <input type="text" name="name" placeholder="Your Name" required><br>
     <input type="email" name="email" placeholder="Email Address" required><br>
