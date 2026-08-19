@@ -91,7 +91,7 @@ button {padding:15px 30px; background:#FF6B35; color:white; border:none; border-
 <body>
 <h1>Book a Free AI Consultation</h1>
 <p>Let us build an AI assistant for your business</p>
- <form action="https://script.google.com/macros/s/AKfycbxuil3SOhF2Xo5P7qR8sT9uV0wX1yZ2aB3cD4eF5gH6iJ7kL8mN9oP0q/exec" method="POST" target="_blank">
+<form action="https://script.google.com/macros/s/AKfycbzzgh9mQA92PezF3Uz9u04mOP8JsARlDqeruXkEU15SHyDoivyyjfWYuWLEyu02Xou0AQ/exec" method="POST" target="_blank">
      <input type="text" name="name" placeholder="Your Name" required><br>
      <input type="email" name="email" placeholder="Your Email" required><br>
      <input type="tel" name="whatsapp" placeholder="WhatsApp Number" required><br>
