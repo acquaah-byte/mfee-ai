@@ -103,13 +103,37 @@ button {padding:15px 30px; background:#FF6B35; color:white; border:none; border-
 <a href="/" style="color:#FF6B35;">← Back Home</a>
 
 <script>
-document.getElementById('leadForm').onsubmit = function(e){
+document.getElementById('contactForm').addEventListener('submit', function(e) {
   e.preventDefault();
-  let data = {name: name.value, email: email.value, whatsapp: whatsapp.value};
-  fetch("https://script.google.com/macros/s/AKfycbxuil3SOhF2Xkw09MV6tABpOPl_xEummm8H2DJOHL50vxFeo_ui8Wgp6iZJdmGSNElX/exec"
-  .then(res => res.json())
-  .then(d => {document.getElementById('msg').innerHTML = "✅ Thank you! We'll WhatsApp you in 30 mins."});
-}
+  
+  const formData = new FormData(this);
+  const submitBtn = this.querySelector('button');
+  const messageDiv = document.getElementById('formMessage');
+  
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Sending...';
+  
+  fetch('https://script.google.com/macros/s/AKfycbxuil3SOhF2Xo5P7qR8sT9uV0wX1yZ2aB3cD4eF5gH6iJ7kL8mN9oP0q/exec', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => response.json())
+  .then(data => {
+    if(data.result === 'success') {
+      messageDiv.innerHTML = '<div style="color: #4ade80; padding: 10px; background: #14532d; border-radius: 8px; margin-top: 15px;">✅ Thank you! We\'ll WhatsApp you in 24hrs</div>';
+      this.reset();
+    } else {
+      messageDiv.innerHTML = '<div style="color: #f87171; padding: 10px; background: #7f1d1d; border-radius: 8px; margin-top: 15px;">❌ Error. Please try again.</div>';
+    }
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Book My Free Call';
+  })
+  .catch(error => {
+    messageDiv.innerHTML = '<div style="color: #f87171; padding: 10px; background: #7f1d1d; border-radius: 8px; margin-top: 15px;">❌ Network error. Please try again.</div>';
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Book My Free Call';
+  });
+});
 </script>
 </body></html>
 """
